@@ -1,6 +1,4 @@
 export type Action = {
     type: string,
-    payload: {
-        count: number
-    }
+    payload: { count: number } | null
 }
