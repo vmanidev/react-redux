@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import store from "./store";
 
+import "./style.css";
+
 export default function App() {
   const [count, setCount] = useState(store.getState().count);
 
@@ -19,10 +21,13 @@ export default function App() {
   };
 
   return (
-    <div>
-      <button onClick={increment}>+</button>
-      <span>{count}</span>
-      <button onClick={decrement}>-</button>
-    </div>
+    <>
+      <h1>Redux - Count App </h1>
+      <div id="main-container">
+        <button onClick={increment}>+</button>
+        <span>{count}</span>
+        <button onClick={decrement}>-</button>
+      </div>
+    </>
   );
 }
