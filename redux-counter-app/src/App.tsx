@@ -7,9 +7,9 @@ export default function App() {
   const [count, setCount] = useState(store.getState().count);
 
   useEffect(() => {
-    const subscribe = store.subscribe(() => setCount(store.getState().count));
+    const unsubscribe = store.subscribe(() => setCount(store.getState().count));
 
-    return () => subscribe();
+    return () => unsubscribe();
   }, []);
 
   const increment = () => {
