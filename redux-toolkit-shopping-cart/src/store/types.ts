@@ -12,3 +12,13 @@ export type Product = {
     category: string,
     image?: string
 }
+
+export interface ErrorPayload {
+    message: string
+}
+
+export type ProductState = {
+    data: Product[],
+    status: "idle" | "loading" | "success" | "failed",
+    error: ErrorPayload | null
+}
