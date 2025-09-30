@@ -1,3 +1,5 @@
+import type store from "./store"
+
 export type CartItem = {
     id: string
     name: string,
@@ -22,3 +24,7 @@ export type ProductState = {
     status: "idle" | "loading" | "success" | "failed",
     error: ErrorPayload | null
 }
+
+export type AppState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
