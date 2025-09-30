@@ -12,10 +12,17 @@ const initialState: ProductState = {
   error: null,
 };
 
-const getProductList = createAsyncThunk(
-  "products/getProductList",
-  async () => {}
-);
+const getProductList = createAsyncThunk<
+  Product[],
+  void,
+  { rejectValue: ErrorPayload }
+>("products/getProductList", async (_, thunkAPI) => {
+  const response = await fetch("https://fakestoreapi.com/products");
+  if (!response.ok)
+    return thunkAPI.rejectWithValue({ message: "Failed to get products." });
+  const data = await response.json();
+  return data;
+});
 
 const productsSlice = createSlice({
   name: "products",
@@ -37,9 +44,9 @@ const productsSlice = createSlice({
 
     builder.addCase(
       getProductList.rejected,
-      (state, action: PayloadAction<ErrorPayload>) => {
+      (state, action: PayloadAction<ErrorPayload | undefined>) => {
         state.data = [];
-        state.error = action.payload;
+        state.error = action.payload ?? { message: "Failed to get products." };
         state.status = "failed";
       }
     );
