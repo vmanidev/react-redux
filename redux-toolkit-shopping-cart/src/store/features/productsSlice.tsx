@@ -12,7 +12,7 @@ const initialState: ProductState = {
   error: null,
 };
 
-const getProductList = createAsyncThunk<
+export const getProductList = createAsyncThunk<
   Product[],
   void,
   { rejectValue: ErrorPayload }
