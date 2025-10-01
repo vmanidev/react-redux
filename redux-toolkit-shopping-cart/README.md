@@ -50,6 +50,7 @@ npm start
 
 * **Frontend:** React, Tailwind CSS
 * **State Management:** Redux Toolkit
+* **Backend API:** [FakeStore API](https://fakestoreapi.com/docs#tag/Products)
 * **Deployment:** Vercel
 * **Language:** JavaScript (ES6+)
 
