@@ -4,6 +4,25 @@ This repository contains the example applications built with **React** and **Red
 Each folder demonstrates different ways to manage state and connect React components with Redux.
 
 ---
+## Redux & Redux Toolkit 
+
+A React + Redux Toolkit shopping cart application with a responsive UI built using Tailwind CSS.
+This project demonstrates state management with Redux Toolkit, dynamic cart functionality, and modern React best practices.
+
+🌐 Live Demo: https://redux-shopping-cart-plum.vercel.app/
+
+📂 Repository: https://github.com/vmanidev/react-redux/tree/main/redux-toolkit-shopping-cart
+
+### 🛒 Features
+
+- **Product Listing**  
+- **Add to Cart**  
+- **Cart Page**  
+- **Responsive Design**  
+- **State Management**  
+
+
+---
 
 ## 🚀 Getting Started
 
