@@ -9,15 +9,22 @@ import {
   increaseItemQuantity,
   removeItem,
 } from "../store/features/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductList() {
   const dispatch = useDispatch<AppDispatch>();
   const { status, data, error } = useAppSelector((state) => state.products);
   const cartData = useAppSelector((status) => status.cart);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(getProductList());
-  }, []);
+  }, [dispatch]);
+
+  const gotoCartPage = () => {
+    navigate("/cart");
+  };
 
   const addToCartBtn = (product: Product) => {
     let selectedProduct = cartData.find(
@@ -94,9 +101,12 @@ export default function ProductList() {
     <div>
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold text-center text-gray-800 m-6">
-          Products
+          📦 Products
         </h2>
-        <button className="bg-blue-600 text-white px-4 py-2 text-sm rounded-md transition-colors duration-200 hover:bg-blue-900 cursor-pointer mr-6 h-fit">
+        <button
+          className="bg-blue-600 text-white px-4 py-2 text-sm rounded-md transition-colors duration-200 hover:bg-blue-900 cursor-pointer mr-6 h-fit"
+          onClick={gotoCartPage}
+        >
           View Cart
         </button>
       </div>
