@@ -1,9 +1,10 @@
-import ProductList from "./pages/ProductList";
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./AppRoutes";
 
 export default function App() {
   return (
-    <div>
-      <ProductList />
-    </div>
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
   );
 }

@@ -29,13 +29,6 @@ export default function ProductList() {
         <>
           <button
             className="bg-blue-600 text-white px-4 py-2 text-sm rounded-md transition-colors duration-200 hover:bg-blue-900 cursor-pointer"
-            onClick={() => dispatch(increaseItemQuantity(product))}
-          >
-            +
-          </button>
-          <span>{selectedProduct.quantity}</span>
-          <button
-            className="bg-blue-600 text-white px-4 py-2 text-sm rounded-md transition-colors duration-200 hover:bg-blue-900 cursor-pointer"
             onClick={() =>
               selectedProduct.quantity > 1
                 ? dispatch(decreaseItemQuantity(product))
@@ -43,6 +36,13 @@ export default function ProductList() {
             }
           >
             -
+          </button>
+          <span>{selectedProduct.quantity}</span>
+          <button
+            className="bg-blue-600 text-white px-4 py-2 text-sm rounded-md transition-colors duration-200 hover:bg-blue-900 cursor-pointer"
+            onClick={() => dispatch(increaseItemQuantity(product))}
+          >
+            +
           </button>
         </>
       );
