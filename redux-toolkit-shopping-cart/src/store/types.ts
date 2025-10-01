@@ -1,8 +1,7 @@
 import type store from "./store"
 
 export type CartItem = {
-    id: string
-    name: string,
+    product: Product
     quantity: number
 }
 

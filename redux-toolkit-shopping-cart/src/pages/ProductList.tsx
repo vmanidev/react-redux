@@ -1,16 +1,62 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProductList } from "../store/features/productsSlice";
-import type { AppDispatch } from "../store/types";
+import type { AppDispatch, Product } from "../store/types";
 import { useAppSelector } from "../hooks/useAppSelector";
+import {
+  addItem,
+  decreaseItemQuantity,
+  increaseItemQuantity,
+  removeItem,
+} from "../store/features/cartSlice";
 
 export default function ProductList() {
   const dispatch = useDispatch<AppDispatch>();
   const { status, data, error } = useAppSelector((state) => state.products);
+  const cartData = useAppSelector((status) => status.cart);
 
   useEffect(() => {
     dispatch(getProductList());
-  }, [dispatch]);
+  }, []);
+
+  const addToCartBtn = (product: Product) => {
+    let selectedProduct = cartData.find(
+      (item) => item.product.id === product.id
+    );
+
+    if (cartData.length > 0 && selectedProduct) {
+      return (
+        <>
+          <button
+            className="bg-blue-600 text-white px-4 py-2 text-sm rounded-md transition-colors duration-200 hover:bg-blue-900 cursor-pointer"
+            onClick={() => dispatch(increaseItemQuantity(product))}
+          >
+            +
+          </button>
+          <span>{selectedProduct.quantity}</span>
+          <button
+            className="bg-blue-600 text-white px-4 py-2 text-sm rounded-md transition-colors duration-200 hover:bg-blue-900 cursor-pointer"
+            onClick={() =>
+              selectedProduct.quantity > 1
+                ? dispatch(decreaseItemQuantity(product))
+                : dispatch(removeItem(product))
+            }
+          >
+            -
+          </button>
+        </>
+      );
+    } else {
+      return (
+        <button
+          className="bg-blue-600 text-white px-4 py-2 text-sm rounded-md transition-colors duration-200 hover:bg-blue-900 cursor-pointer"
+          onClick={() => dispatch(addItem({ product, quantity: 1 }))}
+        >
+          Add to cart
+        </button>
+      );
+    }
+  };
 
   const fetchProducts = () => {
     return data.map((product) => {
@@ -37,9 +83,7 @@ export default function ProductList() {
             <span className="text-lg font-bold text-gray-900">
               &#8377; {product.price}
             </span>
-            <button className="bg-blue-600 text-white px-4 py-2 text-sm rounded-md transition-colors duration-200 hover:bg-blue-900 cursor-pointer">
-              Add to cart
-            </button>
+            {addToCartBtn(product)}
           </div>
         </li>
       );
@@ -48,9 +92,14 @@ export default function ProductList() {
 
   return (
     <div>
-      <h2 className="text-3xl font-bold text-center text-gray-800 m-6">
-        Products
-      </h2>
+      <div className="flex justify-between items-center">
+        <h2 className="text-3xl font-bold text-center text-gray-800 m-6">
+          Products
+        </h2>
+        <button className="bg-blue-600 text-white px-4 py-2 text-sm rounded-md transition-colors duration-200 hover:bg-blue-900 cursor-pointer mr-6 h-fit">
+          View Cart
+        </button>
+      </div>
       {status === "loading" ? (
         <div className="text-md text-center text-blue-600">
           Fetching all products...
