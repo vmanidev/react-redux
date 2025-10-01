@@ -72,21 +72,23 @@ export default function ProductList() {
           key={product.id}
           className="flex flex-col bg-white border border-gray-200 rounded-xl shadow-sm p-4 transition-transform duration-200 ease-in-out hover:-translate-y-1 hover:shadow-lg"
         >
-          <figure className="m-0 fkex flex-col text-left justify-center">
+          <figure className="m-0 flex flex-col text-left justify-center">
             <img
-              className="max-w-full h-[180px] object-contain rounded-md mb-2 justify-self-center"
+              className="w-full h-[180px] sm:h-[200px] object-contain rounded-md mb-2"
               src={product.image}
+              alt={product.title}
             />
             <figcaption>
-              <div className="block text-xs italic text-gray-400">
+              <div className="text-xs italic text-gray-400">
                 {product.category}
               </div>
-              <div className="text-md font-semibold mb-2 text-gray-900">
+              <div className="text-sm sm:text-md font-semibold mb-2 text-gray-900">
                 {product.title}
               </div>
             </figcaption>
           </figure>
-          <div className="flex justify-between items-center mt-auto">
+
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-auto gap-2 sm:gap-0">
             <span className="text-lg font-bold text-gray-900">
               &#8377; {product.price}
             </span>

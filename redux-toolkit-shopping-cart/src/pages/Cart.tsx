@@ -21,9 +21,9 @@ export default function Cart() {
       return (
         <li
           key={product.id}
-          className="flex items-center justify-between gap-4 p-4 border-b border-gray-200"
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 border-b border-gray-200"
         >
-          <div className="flex items-center gap-4 flex-1">
+          <div className="flex items-start sm:items-center gap-4 flex-1 w-full">
             <img
               src={product.image}
               alt={product.title}
@@ -35,11 +35,11 @@ export default function Cart() {
             </div>
           </div>
 
-          <div className="text-gray-800 font-semibold">
+          <div className="text-gray-800 font-semibold mt-2 sm:mt-0">
             &#8377; {calculatePrice(product.price, quantity).toFixed(2)}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 mt-2 sm:mt-0">
             <button
               className="bg-blue-600 text-white px-3 py-1 text-sm rounded-md transition-colors duration-200 hover:bg-blue-900 cursor-pointer"
               onClick={() =>
