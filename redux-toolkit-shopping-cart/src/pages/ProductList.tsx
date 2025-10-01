@@ -88,7 +88,7 @@ export default function ProductList() {
             </figcaption>
           </figure>
 
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-auto gap-2 sm:gap-0">
+          <div className="flex justify-between items-start sm:items-center mt-auto gap-2 sm:gap-0">
             <span className="text-lg font-bold text-gray-900">
               &#8377; {product.price}
             </span>
